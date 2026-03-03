@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Stress Analysis System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            max-width: 800px;
+        }
+
+        .icon {
+            font-size: 5em;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeIn 1s;
+        }
+
+        p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            line-height: 1.6;
+            animation: fadeIn 1.5s;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 2s;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-size: 1.1em;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .footer {
+            margin-top: 60px;
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🎓</div>
+        <h1>Academic Stress Analysis</h1>
+        <p>AI-powered system to analyze, predict, and manage student stress levels using advanced machine learning and natural language processing</p>
+        
+        <div class="buttons">
+            <a href="/dashboard" class="btn">📊 View Dashboard</a>
+            <a href="/prediction" class="btn">🎯 Predict Stress</a>
+            <a href="/nlp-analysis" class="btn">💬 NLP Analysis</a>
+        </div>
+
+        <div class="footer">
+            <p>Developed by Chaithanya D (24SUPMCAGL015)</p>
+            <p>MCA Section A | Guide: Ms. Tejaswini V Gowda</p>
+        </div>
+    </div>
+</body>
+</html>

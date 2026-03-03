@@ -1,0 +1,101 @@
+student_id,age,gender,year_of_study,cgpa,study_hours_per_day,sleep_hours,extracurricular_activities,social_support,financial_stress,part_time_job,family_expectations,relationship_status,physical_activity,screen_time_hours,assignment_load,exam_frequency,peer_pressure,diet_quality,meditation_practice,stress_score,stress_level,student_feedback
+STU0001,20,Male,2,7.8,6,7.5,Yes,High,Low,No,Medium,Single,High,4,Medium,2,Low,Good,Sometimes,32.45,Low,I feel manageable with my workload and enjoying college life.
+STU0002,22,Female,3,8.5,8,6,Yes,Medium,Medium,Yes,High,In Relationship,Medium,6,High,4,Medium,Average,Never,58.32,Medium,Sometimes I feel overwhelmed with assignments and exams.
+STU0003,19,Male,1,6.2,4,5.5,No,Low,High,No,High,Single,Low,9,High,5,High,Poor,Never,76.89,High,I'm constantly anxious about my grades and future.
+STU0004,21,Female,2,9.1,7,8,Yes,High,Low,No,Low,In Relationship,High,3,Low,1,Low,Good,Regularly,28.15,Low,"Studies are going well, I have good balance between academics and personal life."
+STU0005,23,Male,4,7,9,5,No,Medium,High,Yes,High,Complicated,Low,10,High,4,High,Poor,Never,82.47,High,"The pressure is unbearable, I can't sleep properly."
+STU0006,20,Female,2,8.2,6,7,Yes,High,Low,No,Medium,Single,Medium,5,Medium,2,Medium,Good,Sometimes,38.92,Low,"Everything is under control, not feeling overwhelmed."
+STU0007,22,Other,3,6.8,5,6.5,No,Low,Medium,Yes,High,Single,Low,8,Medium,3,High,Average,Never,64.23,Medium,Balancing studies and other activities is challenging but manageable.
+STU0008,19,Female,1,7.5,7,7.5,Yes,Medium,Low,No,Medium,In Relationship,High,4,Low,2,Low,Good,Sometimes,31.78,Low,I'm coping well with the academic pressure.
+STU0009,21,Male,3,5.9,10,4.5,No,Low,High,Yes,High,Single,Low,11,High,5,High,Poor,Never,88.56,High,I feel extremely stressed and exhausted all the time.
+STU0010,20,Female,2,8.7,6,8,Yes,High,Low,No,Low,In Relationship,High,3,Medium,1,Low,Good,Regularly,26.34,Low,"Life is good, stress is minimal."
+STU0011,23,Male,4,7.3,8,6,Yes,Medium,Medium,No,Medium,Single,Medium,6,Medium,3,Medium,Average,Sometimes,48.91,Medium,I experience moderate stress during exam periods.
+STU0012,19,Female,1,6.5,5,6,No,Medium,High,No,High,Complicated,Low,9,High,4,High,Poor,Never,72.15,High,"Too many assignments and not enough time, feeling overwhelmed."
+STU0013,22,Male,3,8.9,7,7.5,Yes,High,Low,No,Low,In Relationship,High,4,Low,2,Low,Good,Regularly,29.67,Low,I feel manageable with my workload and enjoying college life.
+STU0014,21,Female,2,7.1,9,5.5,No,Low,Medium,Yes,High,Single,Medium,8,High,4,Medium,Average,Never,67.42,Medium,The workload is heavy but I'm managing somehow.
+STU0015,20,Male,2,8.3,6,7,Yes,High,Low,No,Medium,In Relationship,High,5,Medium,2,Low,Good,Sometimes,35.28,Low,"Everything is under control, not feeling overwhelmed."
+STU0016,24,Female,4,6,11,4,No,Low,High,Yes,High,Complicated,Low,12,High,5,High,Poor,Never,91.23,High,My mental health is suffering due to academic pressure.
+STU0017,19,Male,1,7.8,6,7.5,Yes,Medium,Medium,No,Medium,Single,Medium,5,Medium,3,Medium,Average,Sometimes,42.56,Medium,Sometimes I feel overwhelmed with assignments and exams.
+STU0018,22,Female,3,8.6,7,7,Yes,High,Low,No,Low,In Relationship,High,4,Low,1,Low,Good,Regularly,27.89,Low,"Studies are going well, I have good balance between academics and personal life."
+STU0019,21,Male,2,6.7,5,6.5,No,Medium,High,Yes,High,Single,Low,9,Medium,4,High,Poor,Never,69.34,Medium,I feel pressured but not to an extreme level.
+STU0020,20,Female,2,9,6,8,Yes,High,Low,No,Low,In Relationship,High,3,Low,2,Low,Good,Regularly,25.71,Low,I'm coping well with the academic pressure.
+STU0021,23,Male,4,7.5,8,6,Yes,Medium,Medium,No,Medium,Single,Medium,6,High,3,Medium,Average,Sometimes,52.18,Medium,Balancing studies and other activities is challenging but manageable.
+STU0022,19,Female,1,6.3,4,5,No,Low,High,No,High,Complicated,Low,10,High,5,High,Poor,Never,79.45,High,I'm constantly anxious about my grades and future.
+STU0023,22,Male,3,8.4,7,7.5,Yes,High,Low,No,Medium,In Relationship,High,4,Medium,2,Low,Good,Sometimes,33.92,Low,"Life is good, stress is minimal."
+STU0024,21,Female,2,7.2,9,5.5,No,Medium,Medium,Yes,High,Single,Low,8,High,4,Medium,Average,Never,65.87,Medium,The workload is heavy but I'm managing somehow.
+STU0025,20,Male,2,8.8,6,7,Yes,High,Low,No,Low,In Relationship,High,5,Low,1,Low,Good,Regularly,28.43,Low,"Everything is under control, not feeling overwhelmed."
+STU0026,24,Female,4,5.8,10,4.5,No,Low,High,Yes,High,Single,Low,11,High,5,High,Poor,Never,85.91,High,"The pressure is unbearable, I can't sleep properly."
+STU0027,19,Male,1,7.6,6,7,Yes,Medium,Low,No,Medium,Single,Medium,5,Medium,2,Medium,Good,Sometimes,36.54,Low,I feel manageable with my workload and enjoying college life.
+STU0028,22,Female,3,8.1,7,6.5,Yes,High,Medium,No,Low,In Relationship,High,4,Medium,2,Low,Good,Regularly,34.67,Low,"Studies are going well, I have good balance between academics and personal life."
+STU0029,21,Male,2,6.9,8,6,No,Low,High,Yes,High,Complicated,Low,9,High,4,High,Poor,Never,74.29,High,I feel extremely stressed and exhausted all the time.
+STU0030,20,Female,2,9.2,6,8,Yes,High,Low,No,Low,In Relationship,High,3,Low,1,Low,Good,Regularly,24.18,Low,I'm coping well with the academic pressure.
+STU0031,23,Male,4,7.4,7,6.5,Yes,Medium,Medium,No,Medium,Single,Medium,6,Medium,3,Medium,Average,Sometimes,46.83,Medium,I experience moderate stress during exam periods.
+STU0032,19,Female,1,6.6,5,5.5,No,Medium,High,No,High,Single,Low,8,High,4,High,Average,Never,70.56,High,"Too many assignments and not enough time, feeling overwhelmed."
+STU0033,22,Male,3,8.7,6,7.5,Yes,High,Low,No,Medium,In Relationship,High,4,Low,2,Low,Good,Sometimes,30.91,Low,"Life is good, stress is minimal."
+STU0034,21,Female,2,7,9,5,No,Low,Medium,Yes,High,Single,Medium,8,High,4,Medium,Poor,Never,68.74,Medium,Balancing studies and other activities is challenging but manageable.
+STU0035,20,Male,2,8.5,7,7,Yes,High,Low,No,Low,In Relationship,High,5,Medium,2,Low,Good,Regularly,31.25,Low,"Everything is under control, not feeling overwhelmed."
+STU0036,24,Female,4,6.1,11,4,No,Low,High,Yes,High,Complicated,Low,12,High,5,High,Poor,Never,89.67,High,My mental health is suffering due to academic pressure.
+STU0037,19,Male,1,7.9,6,7.5,Yes,Medium,Medium,No,Medium,Single,Medium,5,Medium,3,Low,Average,Sometimes,39.48,Low,I feel manageable with my workload and enjoying college life.
+STU0038,22,Female,3,8.3,7,7,Yes,High,Low,No,Low,In Relationship,High,4,Low,1,Low,Good,Regularly,29.15,Low,"Studies are going well, I have good balance between academics and personal life."
+STU0039,21,Male,2,6.8,6,6.5,No,Medium,Medium,Yes,High,Single,Low,7,Medium,3,High,Average,Never,61.92,Medium,Sometimes I feel overwhelmed with assignments and exams.
+STU0040,20,Female,2,8.9,6,8,Yes,High,Low,No,Low,In Relationship,High,3,Low,2,Low,Good,Regularly,26.87,Low,I'm coping well with the academic pressure.
+STU0041,23,Male,4,7.6,8,6,Yes,Medium,Medium,No,Medium,Single,Medium,6,High,3,Medium,Average,Sometimes,50.34,Medium,The workload is heavy but I'm managing somehow.
+STU0042,19,Female,1,6.4,4,5,No,Low,High,No,High,Single,Low,10,High,5,High,Poor,Never,77.62,High,I'm constantly anxious about my grades and future.
+STU0043,22,Male,3,8.6,7,7.5,Yes,High,Low,No,Medium,In Relationship,High,4,Medium,2,Low,Good,Sometimes,32.76,Low,"Life is good, stress is minimal."
+STU0044,21,Female,2,7.3,9,5.5,No,Medium,High,Yes,High,Complicated,Low,8,High,4,Medium,Poor,Never,71.48,High,"The pressure is unbearable, I can't sleep properly."
+STU0045,20,Male,2,8.7,6,7,Yes,High,Low,No,Low,In Relationship,High,5,Low,1,Low,Good,Regularly,27.59,Low,"Everything is under control, not feeling overwhelmed."
+STU0046,24,Female,4,5.9,10,4.5,No,Low,High,Yes,High,Single,Low,11,High,5,High,Poor,Never,86.34,High,I feel extremely stressed and exhausted all the time.
+STU0047,19,Male,1,7.7,6,7,Yes,Medium,Low,No,Medium,Single,Medium,5,Medium,2,Medium,Good,Sometimes,37.21,Low,I feel manageable with my workload and enjoying college life.
+STU0048,22,Female,3,8.2,7,6.5,Yes,High,Medium,No,Low,In Relationship,High,4,Medium,2,Low,Good,Regularly,35.43,Low,"Studies are going well, I have good balance between academics and personal life."
+STU0049,21,Male,2,6.7,8,6,No,Low,High,Yes,High,Single,Low,9,High,4,High,Average,Never,73.18,High,"Too many assignments and not enough time, feeling overwhelmed."
+STU0050,20,Female,2,9.1,6,8,Yes,High,Low,No,Low,In Relationship,High,3,Low,1,Low,Good,Regularly,25.92,Low,I'm coping well with the academic pressure.
+STU0051,22,Male,3,7.2,7,6.5,Yes,Medium,Low,No,Medium,Single,Medium,5,Medium,2,Medium,Good,Sometimes,40.15,Medium,I experience moderate stress during exam periods.
+STU0052,19,Female,1,6.9,5,5.5,No,Low,High,No,High,Complicated,Low,9,High,5,High,Poor,Never,75.34,High,"Too many assignments and not enough time, feeling overwhelmed."
+STU0053,21,Male,2,8.4,6,7.5,Yes,High,Low,No,Low,In Relationship,High,4,Low,1,Low,Good,Regularly,29.87,Low,"Life is good, stress is minimal."
+STU0054,23,Female,4,7.1,9,5.5,No,Medium,Medium,Yes,High,Single,Low,8,High,4,Medium,Average,Never,66.21,Medium,The workload is heavy but I'm managing somehow.
+STU0055,20,Male,2,8.6,6,7,Yes,High,Low,No,Medium,In Relationship,High,5,Medium,2,Low,Good,Sometimes,33.56,Low,"Everything is under control, not feeling overwhelmed."
+STU0056,24,Female,4,5.7,11,4,No,Low,High,Yes,High,Single,Low,12,High,5,High,Poor,Never,90.12,High,My mental health is suffering due to academic pressure.
+STU0057,19,Male,1,7.8,6,7.5,Yes,Medium,Medium,No,Medium,Single,Medium,5,Medium,3,Low,Average,Sometimes,38.74,Low,I feel manageable with my workload and enjoying college life.
+STU0058,22,Female,3,8.5,7,7,Yes,High,Low,No,Low,In Relationship,High,4,Low,1,Low,Good,Regularly,28.93,Low,"Studies are going well, I have good balance between academics and personal life."
+STU0059,21,Male,2,6.6,6,6,No,Medium,High,Yes,High,Complicated,Low,8,Medium,4,High,Poor,Never,70.87,High,I feel extremely stressed and exhausted all the time.
+STU0060,20,Female,2,9,6,8,Yes,High,Low,No,Low,In Relationship,High,3,Low,2,Low,Good,Regularly,26.45,Low,I'm coping well with the academic pressure.
+STU0061,23,Male,4,7.5,8,6,Yes,Medium,Medium,No,Medium,Single,Medium,6,High,3,Medium,Average,Sometimes,49.67,Medium,Balancing studies and other activities is challenging but manageable.
+STU0062,19,Female,1,6.5,4,5,No,Low,High,No,High,Single,Low,10,High,5,High,Poor,Never,78.23,High,I'm constantly anxious about my grades and future.
+STU0063,22,Male,3,8.7,7,7.5,Yes,High,Low,No,Medium,In Relationship,High,4,Medium,2,Low,Good,Sometimes,31.34,Low,"Life is good, stress is minimal."
+STU0064,21,Female,2,7.4,9,5.5,No,Medium,Medium,Yes,High,Single,Medium,7,High,4,Medium,Average,Never,64.92,Medium,Sometimes I feel overwhelmed with assignments and exams.
+STU0065,20,Male,2,8.8,6,7,Yes,High,Low,No,Low,In Relationship,High,5,Low,1,Low,Good,Regularly,27.78,Low,"Everything is under control, not feeling overwhelmed."
+STU0066,24,Female,4,6,10,4.5,No,Low,High,Yes,High,Complicated,Low,11,High,5,High,Poor,Never,87.56,High,"The pressure is unbearable, I can't sleep properly."
+STU0067,19,Male,1,7.6,6,7,Yes,Medium,Low,No,Medium,Single,Medium,5,Medium,2,Medium,Good,Sometimes,36.89,Low,I feel manageable with my workload and enjoying college life.
+STU0068,22,Female,3,8.3,7,6.5,Yes,High,Medium,No,Low,In Relationship,High,4,Medium,2,Low,Good,Regularly,34.21,Low,"Studies are going well, I have good balance between academics and personal life."
+STU0069,21,Male,2,6.8,8,6,No,Low,High,Yes,High,Single,Low,9,High,4,High,Average,Never,72.65,High,"Too many assignments and not enough time, feeling overwhelmed."
+STU0070,20,Female,2,9.2,6,8,Yes,High,Low,No,Low,In Relationship,High,3,Low,1,Low,Good,Regularly,25.13,Low,I'm coping well with the academic pressure.
+STU0071,23,Male,4,7.3,7,6.5,Yes,Medium,Medium,No,Medium,Single,Medium,6,Medium,3,Medium,Average,Sometimes,47.45,Medium,I experience moderate stress during exam periods.
+STU0072,19,Female,1,6.7,5,5.5,No,Medium,High,No,High,Complicated,Low,8,High,4,High,Poor,Never,71.89,High,I feel extremely stressed and exhausted all the time.
+STU0073,22,Male,3,8.6,6,7.5,Yes,High,Low,No,Medium,In Relationship,High,4,Low,2,Low,Good,Sometimes,30.56,Low,"Life is good, stress is minimal."
+STU0074,21,Female,2,7,9,5,No,Low,Medium,Yes,High,Single,Medium,8,High,4,Medium,Poor,Never,67.34,Medium,The workload is heavy but I'm managing somehow.
+STU0075,20,Male,2,8.5,7,7,Yes,High,Low,No,Low,In Relationship,High,5,Medium,2,Low,Good,Regularly,30.92,Low,"Everything is under control, not feeling overwhelmed."
+STU0076,24,Female,4,6.2,11,4,No,Low,High,Yes,High,Single,Low,12,High,5,High,Poor,Never,88.91,High,My mental health is suffering due to academic pressure.
+STU0077,19,Male,1,7.9,6,7.5,Yes,Medium,Medium,No,Medium,Single,Medium,5,Medium,3,Low,Average,Sometimes,39.12,Low,I feel manageable with my workload and enjoying college life.
+STU0078,22,Female,3,8.4,7,7,Yes,High,Low,No,Low,In Relationship,High,4,Low,1,Low,Good,Regularly,28.67,Low,"Studies are going well, I have good balance between academics and personal life."
+STU0079,21,Male,2,6.9,6,6.5,No,Medium,Medium,Yes,High,Complicated,Low,7,Medium,3,High,Average,Never,62.48,Medium,Sometimes I feel overwhelmed with assignments and exams.
+STU0080,20,Female,2,8.9,6,8,Yes,High,Low,No,Low,In Relationship,High,3,Low,2,Low,Good,Regularly,26.34,Low,I'm coping well with the academic pressure.
+STU0081,23,Male,4,7.6,8,6,Yes,Medium,Medium,No,Medium,Single,Medium,6,High,3,Medium,Average,Sometimes,51.23,Medium,Balancing studies and other activities is challenging but manageable.
+STU0082,19,Female,1,6.3,4,5,No,Low,High,No,High,Single,Low,10,High,5,High,Poor,Never,79.87,High,I'm constantly anxious about my grades and future.
+STU0083,22,Male,3,8.7,7,7.5,Yes,High,Low,No,Medium,In Relationship,High,4,Medium,2,Low,Good,Sometimes,32.15,Low,"Life is good, stress is minimal."
+STU0084,21,Female,2,7.2,9,5.5,No,Medium,High,Yes,High,Single,Low,8,High,4,Medium,Poor,Never,70.13,High,"The pressure is unbearable, I can't sleep properly."
+STU0085,20,Male,2,8.6,6,7,Yes,High,Low,No,Low,In Relationship,High,5,Low,1,Low,Good,Regularly,28.91,Low,"Everything is under control, not feeling overwhelmed."
+STU0086,24,Female,4,5.8,10,4.5,No,Low,High,Yes,High,Complicated,Low,11,High,5,High,Poor,Never,85.67,High,I feel extremely stressed and exhausted all the time.
+STU0087,19,Male,1,7.7,6,7,Yes,Medium,Low,No,Medium,Single,Medium,5,Medium,2,Medium,Good,Sometimes,37.56,Low,I feel manageable with my workload and enjoying college life.
+STU0088,22,Female,3,8.2,7,6.5,Yes,High,Medium,No,Low,In Relationship,High,4,Medium,2,Low,Good,Regularly,35.87,Low,"Studies are going well, I have good balance between academics and personal life."
+STU0089,21,Male,2,6.7,8,6,No,Low,High,Yes,High,Single,Low,9,High,4,High,Average,Never,73.92,High,"Too many assignments and not enough time, feeling overwhelmed."
+STU0090,20,Female,2,9.1,6,8,Yes,High,Low,No,Low,In Relationship,High,3,Low,1,Low,Good,Regularly,25.48,Low,I'm coping well with the academic pressure.
+STU0091,23,Male,4,7.4,7,6.5,Yes,Medium,Medium,No,Medium,Single,Medium,6,Medium,3,Medium,Average,Sometimes,48.34,Medium,I experience moderate stress during exam periods.
+STU0092,19,Female,1,6.6,5,5.5,No,Medium,High,No,High,Complicated,Low,8,High,4,High,Poor,Never,71.26,High,I feel extremely stressed and exhausted all the time.
+STU0093,22,Male,3,8.8,6,7.5,Yes,High,Low,No,Medium,In Relationship,High,4,Low,2,Low,Good,Sometimes,29.89,Low,"Life is good, stress is minimal."
+STU0094,21,Female,2,7.1,9,5,No,Low,Medium,Yes,High,Single,Medium,8,High,4,Medium,Poor,Never,68.56,Medium,The workload is heavy but I'm managing somehow.
+STU0095,20,Male,2,8.4,7,7,Yes,High,Low,No,Low,In Relationship,High,5,Medium,2,Low,Good,Regularly,31.67,Low,"Everything is under control, not feeling overwhelmed."
+STU0096,24,Female,4,6.1,11,4,No,Low,High,Yes,High,Single,Low,12,High,5,High,Poor,Never,89.34,High,My mental health is suffering due to academic pressure.
+STU0097,19,Male,1,7.8,6,7.5,Yes,Medium,Medium,No,Medium,Single,Medium,5,Medium,3,Low,Average,Sometimes,38.92,Low,I feel manageable with my workload and enjoying college life.
+STU0098,22,Female,3,8.5,7,7,Yes,High,Low,No,Low,In Relationship,High,4,Low,1,Low,Good,Regularly,27.45,Low,"Studies are going well, I have good balance between academics and personal life."
+STU0099,21,Male,2,6.8,6,6.5,No,Medium,Medium,Yes,High,Complicated,Low,7,Medium,3,High,Average,Never,63.78,Medium,Sometimes I feel overwhelmed with assignments and exams.
+STU0100,20,Female,2,9,6,8,Yes,High,Low,No,Low,In Relationship,High,3,Low,2,Low,Good,Regularly,26.12,Low,I'm coping well with the academic pressure.

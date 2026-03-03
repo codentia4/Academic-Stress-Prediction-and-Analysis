@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict - Stress Predictor</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .header h1 { color: #2d3748; font-size: 2.5em; margin-bottom: 10px; }
+        .nav { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+        .nav a {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .form-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { color: #2d3748; font-weight: 600; margin-bottom: 8px; }
+        .form-group input, .form-group select {
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(102,126,234,0.4); }
+        .result {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+        .result.show { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .stress-box {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            color: white;
+        }
+        .stress-box.Low { background: linear-gradient(135deg, #10b981, #059669); }
+        .stress-box.Medium { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .stress-box.High { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .stress-box h2 { font-size: 2.5em; margin-bottom: 10px; }
+        .confidence { margin: 20px 0; }
+        .conf-item { margin-bottom: 15px; }
+        .conf-label { display: flex; justify-content: space-between; margin-bottom: 5px; font-weight: 600; }
+        .conf-bar { height: 30px; background: #e5e7eb; border-radius: 15px; overflow: hidden; }
+        .conf-fill { height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; transition: width 1s; }
+        .conf-fill.Low { background: linear-gradient(90deg, #10b981, #059669); }
+        .conf-fill.Medium { background: linear-gradient(90deg, #f59e0b, #d97706); }
+        .conf-fill.High { background: linear-gradient(90deg, #ef4444, #dc2626); }
+        .recs { background: #f7fafc; padding: 25px; border-radius: 15px; margin-top: 20px; }
+        .recs h3 { color: #2d3748; margin-bottom: 15px; }
+        .rec-item { padding: 12px; background: white; border-left: 4px solid #667eea; margin-bottom: 10px; border-radius: 5px; }
+        .loading { display: none; text-align: center; padding: 20px; }
+        .loading.show { display: block; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Stress Prediction</h1>
+            <p style="color: #718096; font-size: 1.1em;">Enter student information to predict stress level</p>
+            <div class="nav">
+                <a href="/">🏠 Home</a>
+                <a href="/dashboard">📊 Dashboard</a>
+                <a href="/predict">🎯 Predict</a>
+                <a href="/analysis">💬 Analysis</a>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <form id="predictForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" name="age" min="18" max="30" value="21" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select name="gender" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Year of Study</label>
+                        <select name="year_of_study" required>
+                            <option value="1">1st Year</option>
+                            <option value="2" selected>2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>CGPA (out of 10)</label>
+                        <input type="number" name="cgpa" min="0" max="10" step="0.1" value="7.5" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Study Hours/Day</label>
+                        <input type="number" name="study_hours_per_day" min="0" max="16" value="6" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Sleep Hours</label>
+                        <input type="number" name="sleep_hours" min="0" max="12" step="0.5" value="7" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Extracurricular</label>
+                        <select name="extracurricular_activities" required>
+                            <option value="Yes" selected>Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Social Support</label>
+                        <select name="social_support" required>
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Financial Stress</label>
+                        <select name="financial_stress" required>
+                            <option value="Low" selected>Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Part-time Job</label>
+                        <select name="part_time_job" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No" selected>No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Family Expectations</label>
+                        <select name="family_expectations" required>
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Relationship Status</label>
+                        <select name="relationship_status" required>
+                            <option value="Single" selected>Single</option>
+                            <option value="In Relationship">In Relationship</option>
+                            <option value="Complicated">Complicated</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Physical Activity</label>
+                        <select name="physical_activity" required>
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Screen Time (hours)</label>
+                        <input type="number" name="screen_time_hours" min="0" max="16" value="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Assignment Load</label>
+                        <select name="assignment_load" required>
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Exams/Month</label>
+                        <input type="number" name="exam_frequency" min="0" max="10" value="2" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Peer Pressure</label>
+                        <select name="peer_pressure" required>
+                            <option value="Low" selected>Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Diet Quality</label>
+                        <select name="diet_quality" required>
+                            <option value="Poor">Poor</option>
+                            <option value="Average" selected>Average</option>
+                            <option value="Good">Good</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Meditation</label>
+                        <select name="meditation_practice" required>
+                            <option value="Never">Never</option>
+                            <option value="Sometimes" selected>Sometimes</option>
+                            <option value="Regularly">Regularly</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Predict Stress Level</button>
+            </form>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p style="margin-top: 15px; color: #667eea; font-weight: 500;">Analyzing...</p>
+            </div>
+        </div>
+
+        <div class="result" id="result">
+            <div class="stress-box" id="stressBox">
+                <h2 id="stressLevel">-</h2>
+                <p>Predicted Stress Level</p>
+            </div>
+
+            <div class="confidence">
+                <h3 style="color: #2d3748; margin-bottom: 20px;">Confidence Scores</h3>
+                <div class="conf-item">
+                    <div class="conf-label"><span>Low Stress</span><span id="lowConf">0%</span></div>
+                    <div class="conf-bar"><div class="conf-fill Low" id="lowBar" style="width: 0%"></div></div>
+                </div>
+                <div class="conf-item">
+                    <div class="conf-label"><span>Medium Stress</span><span id="medConf">0%</span></div>
+                    <div class="conf-bar"><div class="conf-fill Medium" id="medBar" style="width: 0%"></div></div>
+                </div>
+                <div class="conf-item">
+                    <div class="conf-label"><span>High Stress</span><span id="highConf">0%</span></div>
+                    <div class="conf-bar"><div class="conf-fill High" id="highBar" style="width: 0%"></div></div>
+                </div>
+            </div>
+
+            <div class="recs">
+                <h3>📋 Recommendations</h3>
+                <div id="recList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('predictForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('result').classList.remove('show');
+            
+            try {
+                const response = await fetch('/api/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.error) {
+                    alert('Error: ' + result.error);
+                    return;
+                }
+                
+                const box = document.getElementById('stressBox');
+                box.className = 'stress-box ' + result.stress_level;
+                document.getElementById('stressLevel').textContent = result.stress_level + ' Stress';
+                
+                document.getElementById('lowConf').textContent = result.confidence.Low + '%';
+                document.getElementById('medConf').textContent = result.confidence.Medium + '%';
+                document.getElementById('highConf').textContent = result.confidence.High + '%';
+                
+                setTimeout(() => {
+                    document.getElementById('lowBar').style.width = result.confidence.Low + '%';
+                    document.getElementById('medBar').style.width = result.confidence.Medium + '%';
+                    document.getElementById('highBar').style.width = result.confidence.High + '%';
+                }, 100);
+                
+                document.getElementById('recList').innerHTML = result.recommendations
+                    .map(r => `<div class="rec-item">${r}</div>`).join('');
+                
+                document.getElementById('result').classList.add('show');
+                document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+            } catch (error) {
+                alert('Error: ' + error.message);
+            } finally {
+                document.getElementById('loading').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

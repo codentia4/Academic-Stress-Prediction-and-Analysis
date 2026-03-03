@@ -1,0 +1,549 @@
+{
+  "1": [
+    {
+      "type": "login",
+      "details": {
+        "email": "admin@test.com"
+      },
+      "timestamp": "2026-02-11 12:58:20"
+    },
+    {
+      "type": "admin_access",
+      "details": null,
+      "timestamp": "2026-02-11 12:59:04"
+    },
+    {
+      "type": "logout",
+      "details": null,
+      "timestamp": "2026-02-11 12:59:09"
+    },
+    {
+      "type": "login",
+      "details": {
+        "email": "admin@test.com"
+      },
+      "timestamp": "2026-02-11 13:07:54"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-11 13:07:54"
+    },
+    {
+      "type": "admin_access",
+      "details": null,
+      "timestamp": "2026-02-11 13:07:59"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "predict"
+      },
+      "timestamp": "2026-02-11 13:08:05"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "dashboard"
+      },
+      "timestamp": "2026-02-11 13:08:09"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-11 13:08:24"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "profile"
+      },
+      "timestamp": "2026-02-11 13:08:41"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "dashboard"
+      },
+      "timestamp": "2026-02-11 13:08:45"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-11 13:08:46"
+    },
+    {
+      "type": "logout",
+      "details": null,
+      "timestamp": "2026-02-11 13:08:50"
+    },
+    {
+      "type": "login",
+      "details": {
+        "email": "admin@test.com"
+      },
+      "timestamp": "2026-02-11 13:12:36"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-11 13:12:36"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "predict"
+      },
+      "timestamp": "2026-02-11 13:12:42"
+    },
+    {
+      "type": "prediction",
+      "details": {
+        "result": "Low",
+        "confidence": {
+          "High": 18.0,
+          "Low": 62.0,
+          "Medium": 20.0
+        }
+      },
+      "timestamp": "2026-02-11 13:12:45"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-11 13:12:50"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-11 13:12:52"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "profile"
+      },
+      "timestamp": "2026-02-11 13:13:12"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-11 13:13:21"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "predict"
+      },
+      "timestamp": "2026-02-11 13:13:22"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "dashboard"
+      },
+      "timestamp": "2026-02-11 13:13:24"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-11 13:13:27"
+    },
+    {
+      "type": "logout",
+      "details": null,
+      "timestamp": "2026-02-11 13:13:30"
+    },
+    {
+      "type": "login",
+      "details": {
+        "email": "admin@test.com"
+      },
+      "timestamp": "2026-02-11 13:17:04"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-11 13:17:04"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-11 13:20:49"
+    },
+    {
+      "type": "logout",
+      "details": null,
+      "timestamp": "2026-02-11 13:21:12"
+    }
+  ],
+  "2": [
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-12 09:53:49"
+    },
+    {
+      "type": "logout",
+      "details": null,
+      "timestamp": "2026-02-12 09:53:56"
+    },
+    {
+      "type": "login",
+      "details": {
+        "email": "chai@gmail.com"
+      },
+      "timestamp": "2026-02-12 09:54:12"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-12 09:54:12"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "dashboard"
+      },
+      "timestamp": "2026-02-12 09:54:14"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-12 09:54:30"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "profile"
+      },
+      "timestamp": "2026-02-12 09:54:38"
+    },
+    {
+      "type": "logout",
+      "details": null,
+      "timestamp": "2026-02-12 09:54:46"
+    },
+    {
+      "type": "login",
+      "details": {
+        "email": "chai@gmail.com"
+      },
+      "timestamp": "2026-02-12 10:01:22"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-12 10:01:23"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "dashboard"
+      },
+      "timestamp": "2026-02-12 10:01:25"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-12 10:01:34"
+    },
+    {
+      "type": "logout",
+      "details": null,
+      "timestamp": "2026-02-12 10:01:38"
+    },
+    {
+      "type": "login",
+      "details": {
+        "email": "chai@gmail.com"
+      },
+      "timestamp": "2026-02-12 10:04:48"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-12 10:04:48"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "dashboard"
+      },
+      "timestamp": "2026-02-12 10:04:50"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "profile"
+      },
+      "timestamp": "2026-02-12 10:05:04"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-12 10:05:06"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-12 10:10:23"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "dashboard"
+      },
+      "timestamp": "2026-02-12 10:10:28"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "profile"
+      },
+      "timestamp": "2026-02-12 10:10:43"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-12 10:10:46"
+    },
+    {
+      "type": "login",
+      "details": {
+        "email": "chai@gmail.com"
+      },
+      "timestamp": "2026-02-12 10:12:50"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-12 10:12:50"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "dashboard"
+      },
+      "timestamp": "2026-02-12 10:12:52"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-12 10:13:02"
+    },
+    {
+      "type": "login",
+      "details": {
+        "email": "chai@gmail.com"
+      },
+      "timestamp": "2026-02-12 10:35:42"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-12 10:35:42"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "profile"
+      },
+      "timestamp": "2026-02-12 10:35:45"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "predict"
+      },
+      "timestamp": "2026-02-12 10:35:47"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "dashboard"
+      },
+      "timestamp": "2026-02-12 10:35:48"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-12 10:35:55"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "dashboard"
+      },
+      "timestamp": "2026-02-12 10:35:58"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-12 10:36:33"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "dashboard"
+      },
+      "timestamp": "2026-02-12 10:36:47"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-12 10:36:51"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-12 10:37:27"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-12 10:39:29"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-12 10:39:51"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-12 10:40:08"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-12 10:41:28"
+    },
+    {
+      "type": "login",
+      "details": {
+        "email": "chai@gmail.com"
+      },
+      "timestamp": "2026-02-15 20:43:10"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "home"
+      },
+      "timestamp": "2026-02-15 20:43:10"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "dashboard"
+      },
+      "timestamp": "2026-02-15 20:43:15"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "predict"
+      },
+      "timestamp": "2026-02-15 20:43:39"
+    },
+    {
+      "type": "prediction",
+      "details": {
+        "result": "Low",
+        "confidence": {
+          "High": 18.0,
+          "Low": 62.0,
+          "Medium": 20.0
+        }
+      },
+      "timestamp": "2026-02-15 20:43:44"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "predict"
+      },
+      "timestamp": "2026-02-15 20:43:48"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "analysis"
+      },
+      "timestamp": "2026-02-15 20:43:56"
+    },
+    {
+      "type": "page_view",
+      "details": {
+        "page": "profile"
+      },
+      "timestamp": "2026-02-15 20:44:08"
+    },
+    {
+      "type": "logout",
+      "details": null,
+      "timestamp": "2026-02-15 20:44:13"
+    }
+  ]
+}

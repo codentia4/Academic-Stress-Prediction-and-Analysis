@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - StressPredictor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(245,158,11,0.3);
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav a {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .nav a:hover {
+            background: white;
+            color: #f59e0b;
+            transform: translateY(-2px);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .stat-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .stat-icon.users { color: #667eea; }
+        .stat-icon.admins { color: #f59e0b; }
+        .stat-icon.predictions { color: #10b981; }
+        .stat-icon.activities { color: #ef4444; }
+        
+        .stat-value {
+            font-size: 3em;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #718096;
+            font-size: 1em;
+            font-weight: 500;
+        }
+        
+        .users-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .users-section h2 {
+            color: #2d3748;
+            margin-bottom: 25px;
+            font-size: 2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .search-box {
+            margin-bottom: 25px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+        
+        .search-icon {
+            position: relative;
+        }
+        
+        .search-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #718096;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: linear-gradient(135deg, #f6f8fb, #e9ecef);
+        }
+        
+        th {
+            padding: 15px;
+            text-align: left;
+            color: #2d3748;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        tbody tr {
+            border-bottom: 1px solid #f7fafc;
+            transition: 0.3s;
+        }
+        
+        tbody tr:hover {
+            background: #f7fafc;
+        }
+        
+        td {
+            padding: 15px;
+            color: #4a5568;
+        }
+        
+        .user-avatar-sm {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .badge.admin {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+        
+        .badge.user {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .activity-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            background: #f0fdf4;
+            color: #166534;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        
+        .prediction-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            background: #eff6ff;
+            color: #1e40af;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-shield-alt"></i> Admin Dashboard</h1>
+        <p style="opacity: 0.95; font-size: 1.1em;">Manage users and monitor system activity</p>
+        <div class="nav">
+            <a href="/home"><i class="fas fa-home"></i> Home</a>
+            <a href="/dashboard"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="/predict"><i class="fas fa-brain"></i> Predict</a>
+            <a href="/analysis"><i class="fas fa-comments"></i> Analysis</a>
+            <a href="/profile"><i class="fas fa-user"></i> Profile</a>
+            <a href="/admin"><i class="fas fa-shield-alt"></i> Admin</a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon users"><i class="fas fa-users"></i></div>
+            <div class="stat-value">{{ stats.total_users }}</div>
+            <div class="stat-label">Total Users</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon admins"><i class="fas fa-shield-alt"></i></div>
+            <div class="stat-value">{{ stats.admin_count }}</div>
+            <div class="stat-label">Administrators</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon predictions"><i class="fas fa-brain"></i></div>
+            <div class="stat-value">{{ stats.total_predictions }}</div>
+            <div class="stat-label">Total Predictions</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon activities"><i class="fas fa-chart-line"></i></div>
+            <div class="stat-value">{{ stats.total_activities }}</div>
+            <div class="stat-label">Total Activities</div>
+        </div>
+    </div>
+
+    <div class="users-section">
+        <h2><i class="fas fa-users-cog"></i> User Management ({{ users|length }} users)</h2>
+        
+        <div class="search-box">
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search users by name or email..." onkeyup="filterUsers()">
+            </div>
+        </div>
+        
+        <table id="usersTable">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Joined</th>
+                    <th>Last Login</th>
+                    <th>Predictions</th>
+                    <th>Activities</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>
+                        <div class="user-info">
+                            <div class="user-avatar-sm">{{ user.username[0]|upper }}</div>
+                            <div>
+                                <div class="user-name">{{ user.username }}</div>
+                                <div style="font-size: 0.85em; color: #718096;">ID: {{ user.id }}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <span class="badge {{ user.role }}">
+                            <i class="fas fa-{{ 'shield-alt' if user.role == 'admin' else 'user' }}"></i>
+                            {{ user.role|upper }}
+                        </span>
+                    </td>
+                    <td>{{ user.registered_at }}</td>
+                    <td>{{ user.last_login }}</td>
+                    <td>
+                        <span class="prediction-count">
+                            <i class="fas fa-brain"></i>
+                            {{ user.predictions_count }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="activity-count">
+                            <i class="fas fa-chart-line"></i>
+                            {{ user.total_activities }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function filterUsers() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toUpperCase();
+            const table = document.getElementById('usersTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+                
+                for (let j = 0; j < 2; j++) { // Search in first 2 columns (name and email)
+                    if (cells[j]) {
+                        const text = cells[j].textContent || cells[j].innerText;
+                        if (text.toUpperCase().indexOf(filter) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                
+                rows[i].style.display = found ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>

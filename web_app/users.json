@@ -1,0 +1,20 @@
+{
+  "1": {
+    "username": "Admin",
+    "email": "admin@test.com",
+    "password": "scrypt:32768:8:1$9LEN2OG5O4xZ4KmT$f1671e342b9953246817c164529a914e31d0bc84e1ec5c111dd875df8f9dd4d973ca1d5ae9d6b4eade1b0c8cfcb3729e8a538acb7be527c59ecc2b415a4947bb",
+    "registered_at": "2026-02-11 12:58:08",
+    "role": "admin",
+    "predictions_count": 1,
+    "last_login": "2026-02-11 13:17:04"
+  },
+  "2": {
+    "username": "Chai",
+    "email": "chai@gmail.com",
+    "password": "scrypt:32768:8:1$rbcGW4o5zE9x6PKV$d2f44e18a80777d5663959b907b962d45d8e9a4487b8b99941290b1942d2d47c34b13cd738687ba449f0690fac190f9d0091b890cfe8e3b5eb69858a8b5218c0",
+    "registered_at": "2026-02-11 13:21:35",
+    "role": "user",
+    "predictions_count": 5,
+    "last_login": "2026-02-15 20:43:10"
+  }
+}

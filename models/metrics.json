@@ -1,0 +1,6 @@
+{
+  "model_name": "Random Forest",
+  "accuracy": 1.0,
+  "train_size": 80,
+  "test_size": 20
+}

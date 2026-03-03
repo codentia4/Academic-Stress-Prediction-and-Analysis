@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - StressPredictor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* Navigation */
+        .nav-bar {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .nav-title i {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            padding: 8px 16px;
+            background: #f1f5f9;
+            color: #475569;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Profile Header */
+        .profile-header {
+            background: white;
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            color: white;
+            margin: 0 auto 25px;
+            box-shadow: 0 15px 40px rgba(102,126,234,0.4);
+            border: 5px solid white;
+        }
+        
+        .profile-name {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        
+        .profile-email {
+            color: #64748b;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .role-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 5px 20px rgba(102,126,234,0.3);
+        }
+        
+        .profile-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid #f1f5f9;
+        }
+        
+        .meta-item {
+            text-align: center;
+        }
+        
+        .meta-icon {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .meta-label {
+            color: #64748b;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .meta-value {
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 1.3em;
+        }
+        
+        /* Stats Grid */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: #667eea;
+            margin: 0 auto 20px;
+        }
+        
+        .stat-value {
+            font-size: 3em;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+        
+        /* Recent Predictions */
+        .predictions-section {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 2em;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title i {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .prediction-item {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 5px solid;
+            transition: all 0.3s;
+        }
+        
+        .prediction-item.Low { border-left-color: #10b981; }
+        .prediction-item.Medium { border-left-color: #f59e0b; }
+        .prediction-item.High { border-left-color: #ef4444; }
+        
+        .prediction-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .prediction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .prediction-badge {
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .prediction-badge.Low { background: linear-gradient(135deg, #10b981, #059669); }
+        .prediction-badge.Medium { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .prediction-badge.High { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        
+        .prediction-time {
+            color: #64748b;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .prediction-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            font-size: 0.95em;
+            color: #475569;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .detail-item strong {
+            color: #1e293b;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 60px 20px;
+            color: #94a3b8;
+        }
+        
+        .no-data i {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: #cbd5e0;
+        }
+        
+        .no-data p {
+            font-size: 1.1em;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-header {
+                padding: 30px 20px;
+            }
+            .profile-name {
+                font-size: 2em;
+            }
+            .section-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-title">
+            <i class="fas fa-user-circle"></i>
+            <span>Profile Management</span>
+        </div>
+        <div class="nav-links">
+            <a href="/home"><i class="fas fa-home"></i> Home</a>
+            <a href="/dashboard"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="/predict"><i class="fas fa-brain"></i> Predict</a>
+            <a href="/analysis"><i class="fas fa-comments"></i> Analysis</a>
+            {% if role == 'admin' %}
+            <a href="/admin"><i class="fas fa-shield-alt"></i> Admin</a>
+            {% endif %}
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-name">{{ user.username }}</div>
+            <div class="profile-email">
+                <i class="fas fa-envelope"></i>
+                {{ user.email }}
+            </div>
+            <div class="role-badge">
+                <i class="fas fa-{{ 'shield-alt' if role == 'admin' else 'user' }}"></i>
+                {{ role|upper }} ACCOUNT
+            </div>
+            
+            <div class="profile-meta">
+                <div class="meta-item">
+                    <div class="meta-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="meta-label">Member Since</div>
+                    <div class="meta-value">{{ user.registered_at }}</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon"><i class="fas fa-clock"></i></div>
+                    <div class="meta-label">Last Active</div>
+                    <div class="meta-value">{{ user.last_login or 'Just now' }}</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon"><i class="fas fa-brain"></i></div>
+                    <div class="meta-label">Total Predictions</div>
+                    <div class="meta-value">{{ user.predictions_count or 0 }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="stat-value">{{ stats.predictions_count }}</div>
+                <div class="stat-label">Stress Predictions</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="stat-value">{{ stats.total_activities }}</div>
+                <div class="stat-label">Platform Activities</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-sign-in-alt"></i>
+                </div>
+                <div class="stat-value">{{ stats.logins }}</div>
+                <div class="stat-label">Login Sessions</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-value">{{ stats.page_views }}</div>
+                <div class="stat-label">Page Views</div>
+            </div>
+        </div>
+
+        <div class="predictions-section">
+            <h2 class="section-title">
+                <i class="fas fa-history"></i>
+                Recent Predictions
+            </h2>
+            
+            {% if predictions %}
+                {% for pred in predictions %}
+                <div class="prediction-item {{ pred.details.result }}">
+                    <div class="prediction-header">
+                        <span class="prediction-badge {{ pred.details.result }}">
+                            <i class="fas fa-{{ 'smile' if pred.details.result == 'Low' else ('meh' if pred.details.result == 'Medium' else 'frown') }}"></i>
+                            {{ pred.details.result }} Stress Level
+                        </span>
+                        <span class="prediction-time">
+                            <i class="fas fa-clock"></i>
+                            {{ pred.timestamp }}
+                        </span>
+                    </div>
+                    <div class="prediction-details">
+                        <div class="detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <strong>Result:</strong> {{ pred.details.result }}
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-percentage"></i>
+                            <strong>Confidence:</strong> {{ pred.details.confidence[pred.details.result] }}%
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-chart-line"></i>
+                            <strong>Prediction ID:</strong> #{{ loop.index }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-data">
+                    <i class="fas fa-brain"></i>
+                    <p>No predictions made yet. Start using the prediction tool to see your history here!</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

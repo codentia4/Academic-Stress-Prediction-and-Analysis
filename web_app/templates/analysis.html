@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP Analysis - StressPredictor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #2d3748;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav a {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #718096;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #2d3748;
+        }
+        
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .wordclouds {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .wordclouds h2 {
+            color: #2d3748;
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+        
+        .wordcloud-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .wordcloud-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        
+        .wordcloud-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+            background: white;
+        }
+        
+        .wordcloud-header {
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .wordcloud-header.Low {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .wordcloud-header.Medium {
+            background: #fed7aa;
+            color: #78350f;
+        }
+        
+        .wordcloud-header.High {
+            background: #fecaca;
+            color: #7f1d1d;
+        }
+        
+        .wordcloud-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .samples-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .samples-section h2 {
+            color: #2d3748;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .stress-section {
+            margin-bottom: 30px;
+        }
+        
+        .stress-section h3 {
+            margin-bottom: 15px;
+        }
+        
+        .badge {
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            color: white;
+            display: inline-block;
+            font-size: 1.1em;
+        }
+        
+        .badge.Low { 
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        .badge.Medium { 
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+        .badge.High { 
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+        
+        .feedback-grid {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .feedback-card {
+            background: #f7fafc;
+            padding: 20px 25px;
+            border-radius: 12px;
+            border-left: 5px solid;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .feedback-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feedback-card::before {
+            content: "\f10d";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 2em;
+            opacity: 0.1;
+        }
+        
+        .feedback-card.Low { 
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border-left-color: #10b981;
+        }
+        
+        .feedback-card.Low::before { color: #10b981; }
+        
+        .feedback-card.Medium { 
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border-left-color: #f59e0b;
+        }
+        
+        .feedback-card.Medium::before { color: #f59e0b; }
+        
+        .feedback-card.High { 
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border-left-color: #ef4444;
+        }
+        
+        .feedback-card.High::before { color: #ef4444; }
+        
+        .feedback-text {
+            color: #2d3748;
+            line-height: 1.7;
+            font-style: italic;
+            padding-left: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-brain"></i> NLP Sentiment Analysis</h1>
+        <p style="color: #718096; font-size: 1.1em;">Deep insights from student feedback</p>
+        <div class="nav">
+            <a href="/home"><i class="fas fa-home"></i> Home</a>
+            <a href="/dashboard"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="/predict"><i class="fas fa-brain"></i> Predict</a>
+            <a href="/analysis"><i class="fas fa-comments"></i> Analysis</a>
+            <a href="/profile"><i class="fas fa-user"></i> Profile</a>
+            {% if role == 'admin' %}
+            <a href="/admin" style="background: linear-gradient(135deg, #f59e0b, #d97706);"><i class="fas fa-shield-alt"></i> Admin</a>
+            {% endif %}
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <!-- Interactive NLP Tools Section -->
+    <div style="background: white; padding: 35px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 30px;">
+        <h2 style="color: #2d3748; margin-bottom: 10px; font-size: 2em; display: flex; align-items: center; gap: 12px;">
+            <i class="fas fa-tools"></i> Interactive NLP Analysis Tools
+        </h2>
+        <p style="color: #718096; margin-bottom: 30px; font-size: 1.05em;">
+            Try these real-time text analysis tools powered by Natural Language Processing
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 25px;">
+            
+            <!-- Tool 1: Sentiment Analyzer -->
+            <div style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); padding: 25px; border-radius: 15px; border: 2px solid #e2e8f0;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em;">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div>
+                        <h3 style="color: #1e293b; font-size: 1.2em; margin: 0;">Sentiment Analyzer</h3>
+                        <p style="color: #64748b; font-size: 0.85em; margin: 0;">Analyze emotional tone of text</p>
+                    </div>
+                </div>
+                <textarea id="sentimentText" placeholder="Enter your text here to analyze sentiment..." style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-family: inherit; resize: vertical; min-height: 80px; margin-bottom: 12px;">I feel really stressed about my upcoming exams and assignments.</textarea>
+                <button onclick="analyzeSentiment()" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fas fa-search"></i> Analyze Sentiment
+                </button>
+                <div id="sentimentResult" style="display: none; margin-top: 15px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #10b981;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="font-weight: 600; color: #475569;">Polarity Score:</span>
+                        <span id="polarityScore" style="font-weight: 700; color: #10b981; font-size: 1.2em;">0.00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="font-weight: 600; color: #475569;">Classification:</span>
+                        <span id="sentimentClass" style="font-weight: 700; color: #6366f1; font-size: 1.1em;">Neutral</span>
+                    </div>
+                    <div style="margin-top: 12px; height: 25px; background: linear-gradient(90deg, #ef4444 0%, #f59e0b 50%, #10b981 100%); border-radius: 12px; position: relative;">
+                        <div id="sentimentPointer" style="position: absolute; width: 30px; height: 30px; background: white; border: 3px solid #1e293b; border-radius: 50%; top: -3px; left: 50%; transform: translateX(-50%); transition: left 0.5s;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 2: Keyword Extractor -->
+            <div style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); padding: 25px; border-radius: 15px; border: 2px solid #e2e8f0;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #6366f1, #4f46e5); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em;">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div>
+                        <h3 style="color: #1e293b; font-size: 1.2em; margin: 0;">Keyword Extractor</h3>
+                        <p style="color: #64748b; font-size: 0.85em; margin: 0;">Extract important keywords</p>
+                    </div>
+                </div>
+                <textarea id="keywordText" placeholder="Enter text to extract keywords..." style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-family: inherit; resize: vertical; min-height: 80px; margin-bottom: 12px;">Academic stress affects student mental health and study performance significantly.</textarea>
+                <button onclick="extractKeywords()" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fas fa-magic"></i> Extract Keywords
+                </button>
+                <div id="keywordResult" style="display: none; margin-top: 15px; padding: 15px; background: white; border-radius: 8px;">
+                    <p style="font-weight: 600; color: #475569; margin-bottom: 10px;">Top Keywords:</p>
+                    <div id="keywordTags" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+                </div>
+            </div>
+
+            <!-- Tool 3: Text Stress Predictor -->
+            <div style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); padding: 25px; border-radius: 15px; border: 2px solid #e2e8f0;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em;">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div>
+                        <h3 style="color: #1e293b; font-size: 1.2em; margin: 0;">Text Stress Detector</h3>
+                        <p style="color: #64748b; font-size: 0.85em; margin: 0;">Predict stress from text</p>
+                    </div>
+                </div>
+                <textarea id="stressText" placeholder="Describe how you're feeling..." style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-family: inherit; resize: vertical; min-height: 80px; margin-bottom: 12px;">I'm overwhelmed with multiple assignments and can't sleep properly.</textarea>
+                <button onclick="detectStress()" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fas fa-heartbeat"></i> Detect Stress Level
+                </button>
+                <div id="stressResult" style="display: none; margin-top: 15px; padding: 20px; border-radius: 8px; text-align: center;">
+                    <div id="stressLevel" style="font-size: 2.5em; font-weight: 900; margin-bottom: 8px;">MEDIUM</div>
+                    <p id="stressMessage" style="font-size: 0.95em; margin: 0;">Moderate stress indicators detected</p>
+                </div>
+            </div>
+
+            <!-- Tool 4: Text Statistics -->
+            <div style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); padding: 25px; border-radius: 15px; border: 2px solid #e2e8f0;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #ec4899, #db2777); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em;">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div>
+                        <h3 style="color: #1e293b; font-size: 1.2em; margin: 0;">Text Statistics</h3>
+                        <p style="color: #64748b; font-size: 0.85em; margin: 0;">Comprehensive text metrics</p>
+                    </div>
+                </div>
+                <textarea id="statsText" placeholder="Enter text to analyze statistics..." style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-family: inherit; resize: vertical; min-height: 80px; margin-bottom: 12px;">The quick brown fox jumps over the lazy dog.</textarea>
+                <button onclick="analyzeStats()" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #ec4899, #db2777); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fas fa-calculator"></i> Calculate Statistics
+                </button>
+                <div id="statsResult" style="display: none; margin-top: 15px; padding: 15px; background: white; border-radius: 8px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div>
+                            <div style="font-size: 0.8em; color: #64748b; font-weight: 600;">Words</div>
+                            <div id="wordCount" style="font-size: 1.5em; font-weight: 800; color: #ec4899;">0</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.8em; color: #64748b; font-weight: 600;">Characters</div>
+                            <div id="charCount" style="font-size: 1.5em; font-weight: 800; color: #ec4899;">0</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.8em; color: #64748b; font-weight: 600;">Sentences</div>
+                            <div id="sentenceCount" style="font-size: 1.5em; font-weight: 800; color: #ec4899;">0</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.8em; color: #64748b; font-weight: 600;">Avg Word Length</div>
+                            <div id="avgLength" style="font-size: 1.5em; font-weight: 800; color: #ec4899;">0.0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-smile"></i></div>
+            <div class="stat-label">Low Stress Sentiment</div>
+            <div class="stat-value">{{ stats.avg_sentiment_low }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-meh"></i></div>
+            <div class="stat-label">Medium Stress Sentiment</div>
+            <div class="stat-value">{{ stats.avg_sentiment_med }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-frown"></i></div>
+            <div class="stat-label">High Stress Sentiment</div>
+            <div class="stat-value">{{ stats.avg_sentiment_high }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-comment"></i></div>
+            <div class="stat-label">Total Analyzed</div>
+            <div class="stat-value">{{ stats.total_analyzed }}</div>
+        </div>
+    </div>
+
+    <div class="charts-grid">
+        <div class="chart-card">
+            <div id="chart1"></div>
+        </div>
+        <div class="chart-card">
+            <div id="chart2"></div>
+        </div>
+        <div class="chart-card">
+            <div id="chart3"></div>
+        </div>
+    </div>
+
+    <div class="wordclouds">
+        <h2><i class="fas fa-cloud"></i> Word Frequency Analysis</h2>
+        <div class="wordcloud-grid">
+            {% for level, path in wordclouds.items() %}
+            <div class="wordcloud-card">
+                <div class="wordcloud-header {{ level }}">
+                    {{ level }} Stress Keywords
+                </div>
+                <img src="{{ path }}" alt="{{ level }} stress wordcloud">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="samples-section">
+        <h2><i class="fas fa-comments"></i> Sample Student Feedback</h2>
+        
+        <div class="stress-section">
+            <h3><span class="badge Low">Low Stress</span></h3>
+            <div class="feedback-grid">
+                {% for feedback in samples['Low'] %}
+                <div class="feedback-card Low">
+                    <div class="feedback-text">"{{ feedback }}"</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="stress-section">
+            <h3><span class="badge Medium">Medium Stress</span></h3>
+            <div class="feedback-grid">
+                {% for feedback in samples['Medium'] %}
+                <div class="feedback-card Medium">
+                    <div class="feedback-text">"{{ feedback }}"</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="stress-section">
+            <h3><span class="badge High">High Stress</span></h3>
+            <div class="feedback-grid">
+                {% for feedback in samples['High'] %}
+                <div class="feedback-card High">
+                    <div class="feedback-text">"{{ feedback }}"</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sentiment Analysis
+        function analyzeSentiment() {
+            const text = document.getElementById('sentimentText').value.toLowerCase();
+            
+            const positiveWords = ['happy', 'great', 'good', 'excellent', 'wonderful', 'amazing', 'love', 'enjoy', 'calm', 'relaxed', 'confident', 'pleased', 'satisfied', 'comfortable', 'peaceful'];
+            const negativeWords = ['sad', 'bad', 'terrible', 'awful', 'hate', 'stressed', 'anxious', 'worried', 'overwhelmed', 'depressed', 'frustrated', 'angry', 'upset', 'tired', 'exhausted', 'pressure', 'difficult'];
+            
+            let score = 0;
+            const words = text.split(/\s+/);
+            
+            words.forEach(word => {
+                if (positiveWords.some(pw => word.includes(pw))) score += 0.15;
+                if (negativeWords.some(nw => word.includes(nw))) score -= 0.15;
+            });
+            
+            score = Math.max(-1, Math.min(1, score));
+            
+            let classification = 'Neutral';
+            let color = '#6366f1';
+            if (score > 0.2) {
+                classification = 'Positive';
+                color = '#10b981';
+            } else if (score < -0.2) {
+                classification = 'Negative';
+                color = '#ef4444';
+            }
+            
+            document.getElementById('polarityScore').textContent = score.toFixed(2);
+            document.getElementById('polarityScore').style.color = color;
+            document.getElementById('sentimentClass').textContent = classification;
+            document.getElementById('sentimentClass').style.color = color;
+            
+            const position = ((score + 1) / 2) * 100;
+            document.getElementById('sentimentPointer').style.left = position + '%';
+            
+            document.getElementById('sentimentResult').style.display = 'block';
+        }
+        
+        // Keyword Extraction
+        function extractKeywords() {
+            const text = document.getElementById('keywordText').value.toLowerCase();
+            const stopWords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'should', 'could', 'may', 'might', 'can'];
+            
+            const words = text.split(/\s+/).filter(w => w.length > 3 && !stopWords.includes(w));
+            
+            const frequency = {};
+            words.forEach(word => {
+                const cleaned = word.replace(/[^a-z]/g, '');
+                if (cleaned) frequency[cleaned] = (frequency[cleaned] || 0) + 1;
+            });
+            
+            const keywords = Object.entries(frequency)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 8)
+                .map(([word]) => word);
+            
+            const container = document.getElementById('keywordTags');
+            container.innerHTML = '';
+            
+            const colors = ['#6366f1', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#3b82f6', '#ef4444', '#14b8a6'];
+            
+            keywords.forEach((keyword, index) => {
+                const tag = document.createElement('span');
+                tag.style.cssText = `padding: 6px 14px; background: ${colors[index % colors.length]}; color: white; border-radius: 20px; font-size: 0.9em; font-weight: 600;`;
+                tag.textContent = keyword;
+                container.appendChild(tag);
+            });
+            
+            document.getElementById('keywordResult').style.display = 'block';
+        }
+        
+        // Stress Detection
+        function detectStress() {
+            const text = document.getElementById('stressText').value.toLowerCase();
+            
+            const highStressWords = ['overwhelmed', 'anxious', 'stressed', 'panic', 'exhausted', 'depressed', 'scared', 'terrified', 'nightmare', 'crisis', 'breakdown', 'pressure', 'burden'];
+            const mediumStressWords = ['busy', 'tired', 'concerned', 'nervous', 'uneasy', 'worried', 'difficult', 'challenging', 'struggling'];
+            const lowStressWords = ['calm', 'relaxed', 'confident', 'happy', 'peaceful', 'comfortable', 'fine', 'good', 'okay'];
+            
+            let stressScore = 0;
+            
+            highStressWords.forEach(word => {
+                if (text.includes(word)) stressScore += 3;
+            });
+            
+            mediumStressWords.forEach(word => {
+                if (text.includes(word)) stressScore += 2;
+            });
+            
+            lowStressWords.forEach(word => {
+                if (text.includes(word)) stressScore -= 2;
+            });
+            
+            let level = 'LOW';
+            let bgColor = 'linear-gradient(135deg, #d1fae5, #a7f3d0)';
+            let textColor = '#065f46';
+            let message = 'Low stress indicators - you seem to be managing well';
+            
+            if (stressScore > 5) {
+                level = 'HIGH';
+                bgColor = 'linear-gradient(135deg, #fecaca, #fca5a5)';
+                textColor = '#7f1d1d';
+                message = 'High stress detected - consider seeking support';
+            } else if (stressScore > 2) {
+                level = 'MEDIUM';
+                bgColor = 'linear-gradient(135deg, #fed7aa, #fdba74)';
+                textColor = '#c2410c';
+                message = 'Moderate stress indicators - monitor your wellbeing';
+            }
+            
+            const resultDiv = document.getElementById('stressResult');
+            resultDiv.style.background = bgColor;
+            document.getElementById('stressLevel').textContent = level;
+            document.getElementById('stressLevel').style.color = textColor;
+            document.getElementById('stressMessage').textContent = message;
+            document.getElementById('stressMessage').style.color = textColor;
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        // Text Statistics
+        function analyzeStats() {
+            const text = document.getElementById('statsText').value;
+            
+            const words = text.split(/\s+/).filter(w => w.length > 0);
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+            const chars = text.replace(/\s/g, '').length;
+            
+            const avgWordLength = words.reduce((sum, word) => sum + word.length, 0) / (words.length || 1);
+            
+            document.getElementById('wordCount').textContent = words.length;
+            document.getElementById('charCount').textContent = chars;
+            document.getElementById('sentenceCount').textContent = sentences.length;
+            document.getElementById('avgLength').textContent = avgWordLength.toFixed(1);
+            
+            document.getElementById('statsResult').style.display = 'block';
+        }
+        
+        // Original charts code
+        const graphs = {{ graphs | safe }};
+        graphs.forEach((g, i) => {
+            const data = JSON.parse(g);
+            Plotly.newPlot(`chart${i+1}`, data.data, data.layout, {responsive: true});
+        });
+    </script>
+</body>
+</html>
